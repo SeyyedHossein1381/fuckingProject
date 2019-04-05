@@ -100,7 +100,7 @@ public class MainController {
                 return "incorrect password!";
             }
         }
-        User user = new User(matcher.group("username"), matcher.group("password"), matcher.group("nickname"));
+        User user = candyCrush.getUserByUsername(matcher.group("username"));
         MainMenu mainMenu = new MainMenu(user, scanner, candyCrush);
         mainMenu.run();
         return "user logged out!";
