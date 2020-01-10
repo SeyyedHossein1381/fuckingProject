@@ -21,27 +21,15 @@ public class GameController {
     public String swipeCandy(Matcher matcher) {
         int x = Integer.parseInt(matcher.group("x"));
         int y = Integer.parseInt(matcher.group("y"));
-        String diriction = matcher.group("diriction");
+        String direction = matcher.group("diriction");
         if (!xyCheck(x, y)) {
             return "invalid cell";
         }
-        if (!checkDestnation(x , y , diriction)){
+        if (!checkDestnation(x , y , direction)){
             return "invalid destination";
         }
-        if (!checkSwipe(x, y)) {
+        if (!checkSwipe(x, y,direction)) {
             return "invalid move";
-        }
-        if(diriction.equals("R")){
-            swipe(x,y,x+1,y);
-        }
-        else if(diriction.equals("L")){
-            swipe(x,y,x-1,y);
-        }
-        else if(diriction.equals("U")){
-            swipe(x,y,x,y+1);
-        }
-        else if(diriction.equals("D")){
-            swipe(x,y,x,y-1);
         }
         return "Hello";
     }
@@ -66,7 +54,78 @@ public class GameController {
         return true;
     }
 
-    public boolean checkSwipe(int x, int y) {
+    public boolean checkSwipe(int x, int y,String direction) {
+        if(direction.equals("R")){
+            swipe(x,y,x+1,y);
+            x=x+1;
+            if ((x + 1) < 11 && (x + 2) < 11 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 2, y))) {
+                return true;
+            }
+            if ((y + 1) < 11 && (y + 2) < 11 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y + 1)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y + 2))) {
+                return true;
+            }
+            if ((y - 1) >= 0 && (y - 2) >= 0 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y - 1)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y - 2))) {
+                return true;
+            }
+            if ((y - 1 >= 0) && (y + 1 < 11) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y - 1)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y + 1))) {
+                return true;
+            }
+            swipe(x,y,x-1,y);
+            return false;
+        }
+        else if(direction.equals("L")){
+            swipe(x,y,x-1,y);
+            x=x-1;
+            if ((x - 1) >= 0 && (x - 2) >= 0 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x - 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x - 2, y))) {
+                return true;
+            }
+            if ((y + 1) < 11 && (y + 2) < 11 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y + 1)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y + 2))) {
+                return true;
+            }
+            if ((y - 1) >= 0 && (y - 2) >= 0 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y - 1)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y - 2))) {
+                return true;
+            }
+            if ((y - 1 >= 0) && (y + 1 < 11) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y - 1)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y + 1))) {
+                return true;
+            }
+            swipe(x,y,x+1,y);
+            return false;
+        }
+        else if(direction.equals("U")){
+            swipe(x,y,x,y+1);
+            y=y+1;
+            if ((x + 1) < 11 && (x + 2) < 11 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 2, y))) {
+                return true;
+            }
+            if ((x - 1) >= 0 && (x - 2) >= 0 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x - 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x - 2, y))) {
+                return true;
+            }
+            if ((y + 1) < 11 && (y + 2) < 11 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y + 1)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y + 2))) {
+                return true;
+            }
+            if ((x - 1 >= 0) && (x + 1 < 11) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x - 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 1, y))) {
+                return true;
+            }
+            swipe(x,y,x,y-1);
+            return false;
+        }
+        else if(direction.equals("D")){
+            swipe(x,y,x,y-1);
+            y= y-1;
+            if ((x + 1) < 11 && (x + 2) < 11 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 2, y))) {
+                return true;
+            }
+            if ((x - 1) >= 0 && (x - 2) >= 0 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x - 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x - 2, y))) {
+                return true;
+            }
+            if ((y - 1) >= 0 && (y - 2) >= 0 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y - 1)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x, y - 2))) {
+                return true;
+            }
+            if ((x - 1 >= 0) && (x + 1 < 11) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x - 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 1, y))) {
+                return true;
+            }
+            swipe(x,y,x,);
+        }
         if ((x + 1) < 11 && (x + 2) < 11 && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 1, y)) && bord.getElementOfBord(x, y).equals(bord.getElementOfBord(x + 2, y))) {
             return true;
         }
