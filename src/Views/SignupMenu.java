@@ -30,7 +30,7 @@ public class SignupMenu {
             } else if (MainCommands.getMatcher(input, MainCommands.loginRegex) != null) {
                 System.out.println("This is login command");
             } else if (MainCommands.getMatcher(input, MainCommands.listOfUsersRegex) != null) {
-                System.out.println("This is list of user command");
+                System.out.print(controller.listOfUsers());
             } else {
                 System.out.println("invalid command");
             }

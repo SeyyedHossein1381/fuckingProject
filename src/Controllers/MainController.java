@@ -8,8 +8,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 
 public class MainController {
-    private Scanner scanner;
-    private CandyCrush candyCrush;
+    private final Scanner scanner;
+    private final CandyCrush candyCrush;
 
     public MainController(Scanner scanner, CandyCrush candyCrush) {
         this.scanner = scanner;
@@ -82,6 +82,16 @@ public class MainController {
             }
         }
         return true;
+    }
+
+    public String listOfUsers(){
+        String output;
+        output = candyCrush.getUsers().size() + " " + "users have registered!" + "\n";
+        int count = 1;
+        for (User user:candyCrush.getUsers()) {
+            output += count + " - " + user.getNickName()+ "\n";
+        }
+        return output;
     }
 
 }
