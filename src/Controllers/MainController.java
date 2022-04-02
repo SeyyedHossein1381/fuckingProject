@@ -53,7 +53,7 @@ public class MainController {
     }
 
     public boolean passwordCheck(String password) {
-        if (password.length()<=8 || password.length()>=32){
+        if (password.length()<8 || password.length()>32){
             return false;
         }
         if (password.matches(MainCommands.specialCharactersRegex.name())) {
@@ -82,6 +82,22 @@ public class MainController {
             }
         }
         return true;
+    }
+
+    public String loginUsers(Matcher matcher){
+        if (usernameCheck(matcher.group("username")).equals("username's format is invalid!")){
+            return "username's format is invalid!";
+        }
+        if (!usernameCheck(matcher.group("username")).equals("username already exists!")){
+            return "username doesn't exist!";
+        }
+        for (int i = 0; i < candyCrush.getUsers().size(); i++) {
+            if(candyCrush.getUsers().get(i).getUsername().equals(matcher.group("username"))
+                && !candyCrush.getUsers().get(i).getPassword().equals(matcher.group("password"))){
+                return "incorrect password!";
+            }
+        }
+        return "user successfully logged in!";
     }
 
     public String listOfUsers(){
