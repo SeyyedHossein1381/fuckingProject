@@ -26,7 +26,7 @@ public class MainMenu {
         Matcher matcher;
         while (true) {
             input = scanner.nextLine();
-            if (MainCommands.getMatcher(input, MainCommands.loginRegex) != null) {
+            if (MainCommands.getMatcher(input, MainCommands.logoutRegex) != null) {
                 return;
             } else if (MainCommands.getMatcher(input, MainCommands.startNewGameRegex) != null) {
 

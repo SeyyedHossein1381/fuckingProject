@@ -118,11 +118,11 @@ public class MainController {
 
     public void enterMenu(Matcher matcher , User user) {
         if (matcher.group("menuName").equals("Shop")){
-            ShopMenu shopMenu = new ShopMenu(user , scanner);
+            ShopMenu shopMenu = new ShopMenu(user , scanner , candyCrush);
             shopMenu.run();
         }
         else{
-            ProfileMenu profileMenu = new ProfileMenu(user , scanner);
+            ProfileMenu profileMenu = new ProfileMenu(user , scanner , candyCrush);
             profileMenu.run();
         }
     }
