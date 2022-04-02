@@ -28,7 +28,9 @@ public class SignupMenu {
                 assert matcher != null;
                 System.out.println(controller.registerUser(matcher));
             } else if (MainCommands.getMatcher(input, MainCommands.loginRegex) != null) {
-                System.out.println("This is login command");
+                matcher = MainCommands.getMatcher(input, MainCommands.loginRegex);
+                assert matcher != null;
+                System.out.println(controller.loginUsers(matcher));
             } else if (MainCommands.getMatcher(input, MainCommands.listOfUsersRegex) != null) {
                 System.out.println("This is list of user command");
             } else {
