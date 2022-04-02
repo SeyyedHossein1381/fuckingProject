@@ -18,14 +18,18 @@ public class MainController {
 
     public String registerUser(Matcher matcher) {
         User user = new User(matcher.group("username") ,
-                    matcher.group("password") , matcher.group("nickName"));
+                    matcher.group("password") , matcher.group("nickname"));
         String usernameCheck = usernameCheck(user.getUsername());
         boolean passwordCheck = passwordCheck(user.getPassword());
+        boolean nicknameCheck = nicknameCheck(user.getNickName());
         if (!usernameCheck.equals("Correct")) {
             return usernameCheck;
         }
         if (!passwordCheck) {
             return "password is weak!";
+        }
+        if (!nicknameCheck) {
+            return "nickname's format is invalid!";
         }
         candyCrush.addUser(user);
         return "user successfully created!";
@@ -34,7 +38,7 @@ public class MainController {
     public String usernameCheck(String username) {
         for (int i = 0; i < username.length(); i++) {
             if (!((username.charAt(i) >= 'a' && username.charAt(i) <= 'z') || (username.charAt(i) >= 'A' && username.charAt(i) <= 'Z')
-                    || (username.charAt(i) >= '9' && username.charAt(i) <= '0') || (username.charAt(i) == '_'))) {
+                    || (username.charAt(i) >= '0' && username.charAt(i) <= '9') || (username.charAt(i) == '_'))) {
                 return "username's format is invalid!";
             }
         }
@@ -49,10 +53,10 @@ public class MainController {
     }
 
     public boolean passwordCheck(String password) {
-        if (password.length()<8 || password.length()>32){
+        if (password.length()<=8 || password.length()>=32){
             return false;
         }
-        if (!password.matches("")) {
+        if (password.matches(MainCommands.specialCharactersRegex.name())) {
             return false;
         }
         boolean[] check = new boolean[4];
@@ -70,10 +74,10 @@ public class MainController {
         return check[0] && check[1] && check[2] && check[3];
     }
 
-    public boolean nickNameCheck(String username) {
-        for (int i = 0; i < username.length(); i++) {
-            if (!((username.charAt(i) >= 'a' && username.charAt(i) <= 'z') || (username.charAt(i) >= 'A' && username.charAt(i) <= 'Z')
-                    || (username.charAt(i) >= '9' && username.charAt(i) <= '0') || (username.charAt(i) == '_') || (username.charAt(i) == ' '))) {
+    public boolean nicknameCheck(String nickname) {
+        for (int i = 0; i < nickname.length(); i++) {
+            if (!((nickname.charAt(i) >= 'a' && nickname.charAt(i) <= 'z') || (nickname.charAt(i) >= 'A' && nickname.charAt(i) <= 'Z')
+                    || (nickname.charAt(i) >= '0' && nickname.charAt(i) <= '9') || (nickname.charAt(i) == '_') || (nickname.charAt(i) == ' '))) {
                 return false;
             }
         }

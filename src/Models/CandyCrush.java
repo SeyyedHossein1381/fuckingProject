@@ -13,7 +13,7 @@ public class CandyCrush {
         return users;
     }
 
-    /*public User getUserByNickname(String nickName){
+    /*public User getUserByNickname(String nickname){
         for (User user: users) {
             if (user == nickname){
                 return user;

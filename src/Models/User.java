@@ -3,12 +3,12 @@ package Models;
 public class User {
     private String username;
     private String password;
-    private String nickName;
+    private String nickname;
 
-    public User(String username , String password , String nickName){
+    public User(String username , String password , String nickname){
         this.username = username;
         this.password = password;
-        this.nickName = nickName;
+        this.nickname = nickname;
     }
 
     public String getUsername() {
@@ -24,6 +24,6 @@ public class User {
     }
 
     public String getNickName() {
-        return nickName;
+        return nickname;
     }
 }

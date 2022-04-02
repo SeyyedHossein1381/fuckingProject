@@ -23,12 +23,13 @@ public class SignupMenu {
             input = scanner.nextLine();
             if (input.equals("exit")) {
                 return;
-            } else if (MainCommands.getMatcher(input, MainCommands.RegisterRegex) != null) {
-                matcher = MainCommands.getMatcher(input, MainCommands.RegisterRegex);
-                System.out.println();
-            } else if (MainCommands.getMatcher(input, MainCommands.RegisterRegex) != null) {
+            } else if (MainCommands.getMatcher(input, MainCommands.registerRegex) != null) {
+                matcher = MainCommands.getMatcher(input, MainCommands.registerRegex);
+                assert matcher != null;
+                System.out.println(controller.registerUser(matcher));
+            } else if (MainCommands.getMatcher(input, MainCommands.loginRegex) != null) {
                 System.out.println("This is login command");
-            } else if (MainCommands.getMatcher(input, MainCommands.RegisterRegex) != null) {
+            } else if (MainCommands.getMatcher(input, MainCommands.listOfUsersRegex) != null) {
                 System.out.println("This is list of user command");
             } else {
                 System.out.println("invalid command");
