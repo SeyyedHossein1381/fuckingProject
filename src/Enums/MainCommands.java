@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 public enum MainCommands {
     RegisterRegex("^$");
+    
     private String regex;
 
     MainCommands(String regex) {
