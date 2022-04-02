@@ -3,6 +3,9 @@ package Controllers;
 import Enums.MainCommands;
 import Models.CandyCrush;
 import Models.User;
+import Views.MainMenu;
+import Views.ProfileMenu;
+import Views.ShopMenu;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -97,7 +100,10 @@ public class MainController {
                 return "incorrect password!";
             }
         }
-        return "user successfully logged in!";
+        User user = new User(matcher.group("username"), matcher.group("password"), matcher.group("nickname"));
+        MainMenu mainMenu = new MainMenu(user, scanner, candyCrush);
+        mainMenu.run();
+        return "user logged out!";
     }
 
     public String listOfUsers() {
@@ -108,6 +114,17 @@ public class MainController {
             output += count + " - " + user.getNickName() + "\n";
         }
         return output;
+    }
+
+    public void enterMenu(Matcher matcher , User user) {
+        if (matcher.group("menuName").equals("Shop")){
+            ShopMenu shopMenu = new ShopMenu(user , scanner);
+            shopMenu.run();
+        }
+        else{
+            ProfileMenu profileMenu = new ProfileMenu(user , scanner);
+            profileMenu.run();
+        }
     }
 
 }

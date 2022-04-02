@@ -21,7 +21,7 @@ public class SignupMenu {
         MainController controller = new MainController(scanner, candyCrush);
         while (true) {
             input = scanner.nextLine();
-            if (input.equals("exit")) {
+            if (MainCommands.getMatcher(input, MainCommands.exitRegex) != null) {
                 return;
             } else if (MainCommands.getMatcher(input, MainCommands.registerRegex) != null) {
                 matcher = MainCommands.getMatcher(input, MainCommands.registerRegex);
