@@ -25,12 +25,10 @@ public class SignupMenu {
                 return;
             } else if (MainCommands.getMatcher(input, MainCommands.registerRegex) != null) {
                 matcher = MainCommands.getMatcher(input, MainCommands.registerRegex);
-                assert matcher != null;
                 System.out.println(controller.registerUser(matcher));
             } else if (MainCommands.getMatcher(input, MainCommands.loginRegex) != null) {
                 matcher = MainCommands.getMatcher(input, MainCommands.loginRegex);
-                assert matcher != null;
-                System.out.println(controller.loginUsers(matcher));
+                System.out.print(controller.loginUsers(matcher));
             } else if (MainCommands.getMatcher(input, MainCommands.listOfUsersRegex) != null) {
                 System.out.print(controller.listOfUsers());
             } else {

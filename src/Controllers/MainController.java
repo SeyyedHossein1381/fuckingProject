@@ -100,10 +100,10 @@ public class MainController {
                 return "incorrect password!";
             }
         }
-        User user = new User(matcher.group("username"), matcher.group("password"), matcher.group("nickname"));
+        User user = candyCrush.getUserByUsername(matcher.group("username"));
         MainMenu mainMenu = new MainMenu(user, scanner, candyCrush);
-        mainMenu.run();
-        return "user logged out!";
+        return mainMenu.run();
+
     }
 
     public String listOfUsers() {
@@ -116,15 +116,23 @@ public class MainController {
         return output;
     }
 
-    public void enterMenu(Matcher matcher , User user) {
-        if (matcher.group("menuName").equals("Shop")){
-            ShopMenu shopMenu = new ShopMenu(user , scanner , candyCrush);
+    public boolean enterMenu(Matcher matcher, User user) {
+        if (matcher.group("menuName").equals("Shop")) {
+            ShopMenu shopMenu = new ShopMenu(user, scanner, candyCrush);
             shopMenu.run();
+            return true;
+        } else {
+            ProfileMenu profileMenu = new ProfileMenu(user, scanner, candyCrush);
+            return profileMenu.run();
         }
-        else{
-            ProfileMenu profileMenu = new ProfileMenu(user , scanner , candyCrush);
-            profileMenu.run();
+    }
+
+    public String removeAccount(User user, String currentPassword) {
+        if (!user.getPassword().equals(currentPassword)) {
+            return "password is incorrect!";
         }
+        candyCrush.removeUser(user);
+        return "account deleted!";
     }
 
 }

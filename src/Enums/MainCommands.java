@@ -9,7 +9,7 @@ public enum MainCommands {
     listOfUsersRegex("^list of users$"),
     startNewGameRegex("^start new game (?<seed>\\d+) (?<moves>\\d+)$"),
     enterMenuRegex("^enter (?<menuName>(Profile)|(Shop)) menu$"),
-    logoutRegex("^logout$"),
+    logoutRegex("^[\\s]{0,}logout[\\s]{0,}$"),
     showScoreboardRegex("^show scoreboard$"),
     exitRegex("^exit$"),
     showMoneyRegex("^show money$"),

@@ -13,27 +13,29 @@ public class MainMenu {
     Scanner scanner;
     CandyCrush candyCrush;
 
-    public MainMenu(User user , Scanner scanner , CandyCrush candyCrush){
+    public MainMenu(User user, Scanner scanner, CandyCrush candyCrush) {
         this.user = user;
         this.scanner = scanner;
         this.candyCrush = candyCrush;
     }
 
-    public void run(){
+    public String run() {
         System.out.println("user successfully logged in!");
         String input;
-        MainController controller = new MainController(scanner , candyCrush);
+        MainController controller = new MainController(scanner, candyCrush);
         Matcher matcher;
         while (true) {
             input = scanner.nextLine();
             if (MainCommands.getMatcher(input, MainCommands.logoutRegex) != null) {
-                return;
+                return "user logged out!\n";
             } else if (MainCommands.getMatcher(input, MainCommands.startNewGameRegex) != null) {
 
             } else if (MainCommands.getMatcher(input, MainCommands.enterMenuRegex) != null) {
                 matcher = MainCommands.getMatcher(input, MainCommands.enterMenuRegex);
                 assert matcher != null;
-                controller.enterMenu(matcher , user);
+                if (!controller.enterMenu(matcher, user)) {
+                    return "";
+                }
             } else if (MainCommands.getMatcher(input, MainCommands.showScoreboardRegex) != null) {
 
             } else {
