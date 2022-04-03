@@ -11,6 +11,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
+        this.money = 100;
     }
 
     public String getUsername() {

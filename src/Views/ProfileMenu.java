@@ -39,6 +39,8 @@ public class ProfileMenu {
                 System.out.println(controller.changePassword(user , matcher.group("oldPassword"), matcher.group("newPassword")));
             } else if (MainCommands.getMatcher(input, MainCommands.showInformationRegex) != null) {
                 System.out.println(controller.showInformation(user));
+            } else if (MainCommands.getMatcher(input, MainCommands.showMenuRegex) != null) {
+                System.out.println("Profile Menu");
             } else {
                 System.out.println("invalid command");
             }
