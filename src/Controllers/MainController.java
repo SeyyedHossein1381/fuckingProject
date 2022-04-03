@@ -135,4 +135,21 @@ public class MainController {
         return "account deleted!";
     }
 
+    public String changePassword(User user , String oldPassword , String newPassword){
+        if (!user.getPassword().equals(oldPassword)){
+            return "password is incorrect!";
+        }
+        if (!passwordCheck(newPassword)){
+            return "password is weak!";
+        }
+        user.setPassword(newPassword);
+        return "password changed!";
+    }
+
+    public String showInformation(User user){
+        String output;
+        output = "username : " + user.getUsername() + "\nnickname : " + user.getNickName() + "\nmoney : " + user.getMoney() + "\nhighscore : " + user.getHighScore();
+        return output;
+    }
+
 }
