@@ -4,12 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum GameCommands {
-    swipeRegex("^swipe (?<X>\\d+) (?<Y>\\d+) (?<direction>R|D|L|U)$"),
-    activeLollipopHammerRegex("^active lollipop hammer (?<X>\\d+) (?<Y>\\d+)$"),
-    activeColourBombBrushRegex("^active colour bomb brush (?<X>\\d+) (?<Y>\\d+)$"),
-    activeWrappedCrushRegex("^active wrapped brush (?<X>\\d+) (?<Y>\\d+)$"),
-    acteveStripedBrushRegex("^active striped brush (?<X>\\d+) (?<Y>\\d+) (?<direction>h|v)$"),
-    activeFreeSwitchRegex("^active free switch (?<X>\\d+) (?<Y>\\d+) (?<direction>R|L|D|U)$"),
+    swipeRegex("^swipe (?<Y>\\d+) (?<X>\\d+) (?<direction>R|D|L|U)$"),
+    activeLollipopHammerRegex("^active lollipop hammer (?<Y>\\d+) (?<X>\\d+)$"),
+    activeColourBombBrushRegex("^active colour bomb brush (?<Y>\\d+) (?<X>\\d+)$"),
+    activeWrappedCrushRegex("^active wrapped brush (?<Y>\\d+) (?<X>\\d+)$"),
+    acteveStripedBrushRegex("^active striped brush (?<Y>\\d+) (?<X>\\d+) (?<direction>h|v)$"),
+    activeFreeSwitchRegex("^active free switch (?<Y>\\d+) (?<X>\\d+) (?<direction>R|L|D|U)$"),
     activeExtraMoveRegex("^active extra moves$"),
     showBoardRegex("^show board$"),
     showBoostersRegex("^show boosters$")

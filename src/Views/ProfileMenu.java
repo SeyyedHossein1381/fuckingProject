@@ -31,7 +31,7 @@ public class ProfileMenu {
             } else if (MainCommands.getMatcher(input, MainCommands.removeAccountRegex) != null) {
                 matcher = MainCommands.getMatcher(input, MainCommands.removeAccountRegex);
                 assert matcher != null;
-                System.out.println(controller.removeAccount(user , matcher.group("currentPassword")));
+//                System.out.println(controller.removeAccount(user , matcher.group("currentPassword")));
                 return false;
             } else if (MainCommands.getMatcher(input, MainCommands.changePasswordRegex) != null) {
                 matcher = MainCommands.getMatcher(input, MainCommands.changePasswordRegex);
