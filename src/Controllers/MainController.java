@@ -102,8 +102,8 @@ public class MainController {
         }
         User user = candyCrush.getUserByUsername(matcher.group("username"));
         MainMenu mainMenu = new MainMenu(user, scanner, candyCrush);
-        mainMenu.run();
-        return "user logged out!";
+        return mainMenu.run();
+
     }
 
     public String listOfUsers() {
@@ -116,15 +116,40 @@ public class MainController {
         return output;
     }
 
-    public void enterMenu(Matcher matcher , User user) {
-        if (matcher.group("menuName").equals("Shop")){
-            ShopMenu shopMenu = new ShopMenu(user , scanner , candyCrush);
+    public boolean enterMenu(Matcher matcher, User user) {
+        if (matcher.group("menuName").equals("Shop")) {
+            ShopMenu shopMenu = new ShopMenu(user, scanner, candyCrush);
             shopMenu.run();
+            return true;
+        } else {
+            ProfileMenu profileMenu = new ProfileMenu(user, scanner, candyCrush);
+            return profileMenu.run();
         }
-        else{
-            ProfileMenu profileMenu = new ProfileMenu(user , scanner , candyCrush);
-            profileMenu.run();
+    }
+
+    public String removeAccount(User user, String currentPassword) {
+        if (!user.getPassword().equals(currentPassword)) {
+            return "password is incorrect!";
         }
+        candyCrush.removeUser(user);
+        return "account deleted!";
+    }
+
+    public String changePassword(User user , String oldPassword , String newPassword){
+        if (!user.getPassword().equals(oldPassword)){
+            return "password is incorrect!";
+        }
+        if (!passwordCheck(newPassword)){
+            return "password is weak!";
+        }
+        user.setPassword(newPassword);
+        return "password changed!";
+    }
+
+    public String showInformation(User user){
+        String output;
+        output = "username : " + user.getUsername() + "\nnickname : " + user.getNickName() + "\nmoney : " + user.getMoney() + "\nhighscore : " + user.getHighScore();
+        return output;
     }
 
 }

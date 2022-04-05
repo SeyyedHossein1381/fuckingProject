@@ -9,6 +9,10 @@ public class CandyCrush {
         users.add(user);
     }
 
+    public void removeUser(User user){
+        users.remove(user);
+    }
+
     public ArrayList<User> getUsers() {
         return users;
     }
