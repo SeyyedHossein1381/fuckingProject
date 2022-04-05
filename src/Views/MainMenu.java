@@ -29,7 +29,9 @@ public class MainMenu {
             if (MainCommands.getMatcher(input, MainCommands.logoutRegex) != null) {
                 return "user logged out!\n";
             } else if (MainCommands.getMatcher(input, MainCommands.startNewGameRegex) != null) {
-                controller.startGame(scanner , user);
+                matcher = MainCommands.getMatcher(input, MainCommands.startNewGameRegex);
+                assert matcher != null;
+                System.out.println(controller.startGame(scanner , user , matcher));
             } else if (MainCommands.getMatcher(input, MainCommands.enterMenuRegex) != null) {
                 matcher = MainCommands.getMatcher(input, MainCommands.enterMenuRegex);
                 assert matcher != null;
