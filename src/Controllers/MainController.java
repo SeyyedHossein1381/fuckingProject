@@ -128,13 +128,13 @@ public class MainController {
         }
     }
 
-    public String removeAccount(User user, String currentPassword) {
+    /*public String removeAccount(User user, String currentPassword) {
         if (!user.getPassword().equals(currentPassword)) {
             return "password is incorrect!";
         }
         candyCrush.removeUser(user);
         return "account deleted!";
-    }
+    }*/
 
     public String changePassword(User user , String oldPassword , String newPassword){
         if (!user.getPassword().equals(oldPassword)){
@@ -153,8 +153,8 @@ public class MainController {
         return output;
     }
     
-    public String startGame(Scanner scanner , User user){
-        GameMenu gameMenu = new GameMenu(user , scanner);
+    public String startGame(Scanner scanner , User user , Matcher matcher){
+        GameMenu gameMenu = new GameMenu(user , scanner , Integer.parseInt(matcher.group("seed")) , Integer.parseInt(matcher.group("moves")));
         return "game has ended. your score is " + gameMenu.run();
     }
 

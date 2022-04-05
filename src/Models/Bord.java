@@ -12,10 +12,10 @@ public class Bord {
     }
 
     public String getElementOfBord(int x , int y){
-        return bord[x][y];
+        return bord[y][x];
     }
 
     public void setElementOfBord(int x , int y , String element){
-        bord[x][y] = element;
+        bord[y][x] = element;
     }
 }
