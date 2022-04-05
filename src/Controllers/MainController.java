@@ -3,6 +3,7 @@ package Controllers;
 import Enums.MainCommands;
 import Models.CandyCrush;
 import Models.User;
+import Views.GameMenu;
 import Views.MainMenu;
 import Views.ProfileMenu;
 import Views.ShopMenu;
@@ -89,7 +90,7 @@ public class MainController {
 
     public String loginUsers(Matcher matcher) {
         if (usernameCheck(matcher.group("username")).equals("username's format is invalid!")) {
-            return "username's format is invalid!";
+            return "username's format is invalid!\n";
         }
         if (!usernameCheck(matcher.group("username")).equals("username already exists!")) {
             return "username doesn't exist!";
@@ -97,7 +98,7 @@ public class MainController {
         for (int i = 0; i < candyCrush.getUsers().size(); i++) {
             if (candyCrush.getUsers().get(i).getUsername().equals(matcher.group("username"))
                     && !candyCrush.getUsers().get(i).getPassword().equals(matcher.group("password"))) {
-                return "incorrect password!";
+                return "incorrect password!\n";
             }
         }
         User user = candyCrush.getUserByUsername(matcher.group("username"));
@@ -150,6 +151,11 @@ public class MainController {
         String output;
         output = "username : " + user.getUsername() + "\nnickname : " + user.getNickName() + "\nmoney : " + user.getMoney() + "\nhighscore : " + user.getHighScore();
         return output;
+    }
+    
+    public String startGame(Scanner scanner , User user){
+        GameMenu gameMenu = new GameMenu(user , scanner);
+        return "game has ended. your score is " + gameMenu.run();
     }
 
 }

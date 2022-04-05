@@ -6,6 +6,7 @@ public class User {
     private String nickname;
     private int highScore;
     private int money;
+    private int score;
 
     public User(String username , String password , String nickname){
         this.username = username;
@@ -44,5 +45,13 @@ public class User {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
